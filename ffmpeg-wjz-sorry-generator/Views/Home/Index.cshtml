@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="row">
+        <div class="col-5">
+            <div class="form-control">
+                <label for="wjz">WJZ</label>
+                <input type="radio" name="type" value="wjz" checked="checked" id="wjz"/>
+
+                <label for="sorry">Sorry</label>
+                <input type="radio" name="type" value="sorry" id="sorry" />
+            </div>
+            <div class="form-control">
+                <textarea rows="9" class="form-control form-control-plaintext" style="width: 100%" id="input"></textarea>
+            </div>
+        </div>
+        
+        <img class="col-7" id="result"/>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary col-4" id="generate-button">生成</button>
+        <span class="col-4"></span>
+        <button class="btn btn-dark col-4" id="download-button">下载</button>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $input = $("#input");
+        $img = $("#result");
+        $type = $("input[name=type]");
+
+        $type.change(() => applyVal());
+        applyVal();
+
+        function applyVal() {
+            const val = $("input[name=type]:checked").val();
+            if (val === 'wjz') {
+                $input.val('还愣着干嘛\n上页面显示\n上报错日志\n你找别人吧，我不会');
+            } else if (val === 'sorry') {
+                $input.val(["好啊", "就算你是一流程序员", "就算你代码再完美", "毕竟我是产品", "我叫你改需求你就要改", "产品了不起啊", "sorry 产品真的也不起", "以后天天让他改需求", "哈哈，天天改"].join('\n'));
+            }
+        }
+
+        $("#generate-button").click(async () => {
+            const type = $("input[name=type]:checked").val();
+            const subtitle = $input.val().split('\n').join('|');
+            const resp = await fetch(`/sorry/generate?type=${type}&subtitle=${subtitle}`);
+            const blob = await resp.blob();
+            const url = URL.createObjectURL(blob);
+            $img[0].src = url;
+        });
+
+        $("#download-button").click(() => {
+            const type = $("input[name=type]:checked").val();
+            const subtitle = $input.val().split('\n').join('|');
+            open(`/sorry/generate?type=${type}&subtitle=${subtitle}`);
+        });
+    </script>
+}

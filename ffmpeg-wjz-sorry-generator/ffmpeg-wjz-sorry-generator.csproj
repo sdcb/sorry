@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ffmpeg_wjz_sorry_generator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sdcb.FFmpeg" Version="5.1.1" />
+    <PackageReference Include="Sdcb.FFmpeg.runtime.windows-x64" Version="5.1.2" />
+    <PackageReference Include="Vortice.Direct2D1" Version="2.1.41" />
+  </ItemGroup>
+
+</Project>
