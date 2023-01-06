@@ -201,26 +201,26 @@ namespace ffmpeg_wjz_sorry_generator.Controllers
 
         public Mp4Source CreateLines(params string[] lines) => new Mp4Source(Mp4Url, SubtitleDefs.Zip(lines).Select(x => new Subtitle(x.First, SubtitleValue.CreateDefault(x.Second))).ToArray());
 
-        public static readonly Mp4SourceDef WangJingZe = new Mp4SourceDef("https://raw.githubusercontent.com/shuangrain/SorryNet/master/src/App_Data/Template/wangjingze/template.mp4", new[]
+        public static readonly Mp4SourceDef WangJingZe = new Mp4SourceDef("https://io.starworks.cc:88/cv-public/2022/gif-wjz.mp4", new[]
         {
-        new SubtitleDef(0, 1.04, "我王境泽就是饿死"),
-        new SubtitleDef(1.46, 2.9, "死外面 从这里跳下去"),
-        new SubtitleDef(3.09, 4.33, "也不会吃你们一点东西的"),
-        new SubtitleDef(4.59, 5.93, "真香~"),
-    });
+            new SubtitleDef(0, 1.04, "我王境泽就是饿死"),
+            new SubtitleDef(1.46, 2.9, "死外面 从这里跳下去"),
+            new SubtitleDef(3.09, 4.33, "也不会吃你们一点东西的"),
+            new SubtitleDef(4.59, 5.93, "真香~"),
+        });
 
-        public static readonly Mp4SourceDef Sorry = new Mp4SourceDef("https://raw.githubusercontent.com/shuangrain/SorryNet/master/src/App_Data/Template/sorry/template.mp4", new[]
+        public static readonly Mp4SourceDef Sorry = new Mp4SourceDef("https://io.starworks.cc:88/cv-public/2022/gif-sorry.mp4", new[]
         {
-        new SubtitleDef(1.18, 1.56, "好啊"),
-        new SubtitleDef(3.18, 4.43, "别说我是一等良民"),
-        new SubtitleDef(5.31, 7.43, "就算你真的想要诬告我"),
-        new SubtitleDef(7.56, 9.93, "我有的是钱找律师帮我打官司"),
-        new SubtitleDef(10.06, 11.56, "我想我根本不用坐牢了"),
-        new SubtitleDef(11.93, 13.06, "你别以为有钱了不起啊"),
-        new SubtitleDef(13.81, 16.31, "Sorry"),
-        new SubtitleDef(18.06, 19.56, "有钱真的了不起"),
-        new SubtitleDef(19.60, 21.60, "不过我想你不会明白这种感觉"),
-    });
+            new SubtitleDef(1.18, 1.56, "好啊"),
+            new SubtitleDef(3.18, 4.43, "别说我是一等良民"),
+            new SubtitleDef(5.31, 7.43, "就算你真的想要诬告我"),
+            new SubtitleDef(7.56, 9.93, "我有的是钱找律师帮我打官司"),
+            new SubtitleDef(10.06, 11.56, "我想我根本不用坐牢了"),
+            new SubtitleDef(11.93, 13.06, "你别以为有钱了不起啊"),
+            new SubtitleDef(13.81, 16.31, "Sorry"),
+            new SubtitleDef(18.06, 19.56, "有钱真的了不起"),
+            new SubtitleDef(19.60, 21.60, "不过我想你不会明白这种感觉"),
+        });
     }
 
     public record Mp4Source(string Mp4Url, Subtitle[] Subtitles)
