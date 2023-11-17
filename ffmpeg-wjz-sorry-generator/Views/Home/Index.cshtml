@@ -52,7 +52,7 @@
         $("#generate-button").click(async () => {
             const type = $("input[name=type]:checked").val();
             const subtitle = $input.val().split('\n').join('|');
-            const resp = await fetch(`/sorry/generate?type=${type}&subtitle=${subtitle}`);
+            const resp = await fetch(`/sorry/generate?type=${type}&subtitle=${encodeURIComponent(subtitle)}`);
             const blob = await resp.blob();
             const url = URL.createObjectURL(blob);
             $img[0].src = url;
@@ -61,7 +61,7 @@
         $("#download-button").click(() => {
             const type = $("input[name=type]:checked").val();
             const subtitle = $input.val().split('\n').join('|');
-            open(`/sorry/generate?type=${type}&subtitle=${subtitle}`);
+            open(`/sorry/generate?type=${type}&subtitle=${encodeURIComponent(subtitle)}`);
         });
     </script>
 }
