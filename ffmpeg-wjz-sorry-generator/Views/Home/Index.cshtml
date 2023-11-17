@@ -11,6 +11,9 @@
 
                 <label for="sorry">Sorry</label>
                 <input type="radio" name="type" value="sorry" id="sorry" />
+
+                <label for="nlgl">Nlgl</label>
+                <input type="radio" name="type" value="nlgl" id="nlgl" />
             </div>
             <div class="form-control">
                 <textarea rows="9" class="form-control form-control-plaintext" style="width: 100%" id="input"></textarea>
@@ -41,6 +44,8 @@
                 $input.val('还愣着干嘛\n上页面显示\n上报错日志\n你找别人吧，我不会');
             } else if (val === 'sorry') {
                 $input.val(["好啊", "就算你是一流程序员", "就算你代码再完美", "毕竟我是产品", "我叫你改需求你就要改", "产品了不起啊", "sorry 产品真的也不起", "以后天天让他改需求", "哈哈，天天改"].join('\n'));
+            } else if (val === 'nlgl') {
+                $input.val(["Java 8越来越不行了？", "哪里不行了？", "这么多年来大家都用Java 8", "不要睁着眼睛乱说", "我们Java程序员很不容易的哦", "而且Java 8真的不是那种", "只能写写Hello World的语言", "哎，我写Java多少年了", "它怎么牛逼我是最知道的", "是啊", "C#就语法好点", "哈哈好不好", "真的乱说", "这么多年都是Java 8", "哪里落后了", "有的时候找找自己原因好吧", "这么多年了", "工资涨没涨", "有没有认真工作好不好", "这么多年都用的Java 8", "我真的快疯掉了"].join('\n'));
             }
         }
 
