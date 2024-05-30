@@ -1,4 +1,5 @@
 using Gradio.Net;
+using System.Text.RegularExpressions;
 
 namespace Sorry;
 
@@ -12,6 +13,9 @@ public static partial class Program
         webApplication.UseGradio(CreateBlocks());
         webApplication.Run();
     }
+
+    [GeneratedRegex(@"\r\n|\r|\n")]
+    public static partial Regex LineSpliter();
 
     static Blocks CreateBlocks()
     {
@@ -41,7 +45,7 @@ public static partial class Program
             if (def == null) throw new Exception($"模板{template}错误，请输入 {string.Join("|", Mp4SourceDef.All.Select(x => x.Title))} 之一");
             string subtitle = i.Data[1].ToString()!;
 
-            byte[] gif = def.CreateLines(subtitle.Split(Environment.NewLine)).DecodeAddSubtitle();
+            byte[] gif = def.CreateLines(LineSpliter().Split(subtitle)).DecodeAddSubtitle();
             string path = Path.GetTempFileName();
             File.WriteAllBytes(path, gif);
             return gr.Output(path);
