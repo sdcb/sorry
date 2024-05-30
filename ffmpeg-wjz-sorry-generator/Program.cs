@@ -64,6 +64,19 @@ public static partial class Program
             return Task.FromResult(gr.Output(def.CombinedText));
         }, [template], [subtitle]);
 
+        using (gr.Row())
+        {
+            gr.Markdown("""
+		    ## Github: 
+		    * https://github.com/sdcb/sorry
+		    * https://github.com/sdcb/Sdcb.FFmpeg
+		    """);
+
+            gr.Markdown("""		
+		    ## QQ: 495782587
+		    """);
+        }
+
         return blocks;
     }
 }
