@@ -1,12 +1,4 @@
-using Sdcb.FFmpeg.Codecs;
-using Sdcb.FFmpeg.Formats;
-using Sdcb.FFmpeg.Raw;
-using System.Numerics;
-using Vortice.Direct2D1;
-using Vortice.DirectWrite;
-using Vortice.Mathematics;
 using Gradio.Net;
-using Sdcb.FFmpeg.Toolboxs.Extensions;
 
 namespace Sorry;
 
@@ -15,7 +7,6 @@ public static partial class Program
     static void Main()
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
-        builder.Logging.ClearProviders();
         builder.Services.AddGradio();
         WebApplication webApplication = builder.Build();
         webApplication.UseGradio(CreateBlocks());
@@ -43,7 +34,7 @@ public static partial class Program
             subtitle = gr.Textbox(Mp4SourceDef.Xiang.CombinedText, lines: 8, label: "输入字幕");
             image = gr.Image(interactive: false);
         }
-        gr.Button("生成视频").Click(i =>
+        gr.Button("生成视频").Click(async i =>
         {
             string template = i.Data[0].ToString()!;
             Mp4SourceDef? def = Mp4SourceDef.All.FirstOrDefault(x => x.Title == template);
@@ -53,15 +44,15 @@ public static partial class Program
             byte[] gif = def.CreateLines(subtitle.Split(Environment.NewLine)).DecodeAddSubtitle();
             string path = Path.GetTempFileName();
             File.WriteAllBytes(path, gif);
-            return Task.FromResult(gr.Output(path));
+            return gr.Output(path);
         }, [template, subtitle], [image]);
 
-        loadSubtitleButton.Click(i =>
+        loadSubtitleButton.Click(async i =>
         {
             string template = i.Data[0].ToString()!;
             Mp4SourceDef? def = Mp4SourceDef.All.FirstOrDefault(x => x.Title == template);
             if (def == null) throw new Exception($"模板{template}错误，请输入 {string.Join("|", Mp4SourceDef.All.Select(x => x.Title))} 之一");
-            return Task.FromResult(gr.Output(def.CombinedText));
+            return gr.Output(def.CombinedText);
         }, [template], [subtitle]);
 
         using (gr.Row())
