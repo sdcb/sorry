@@ -40,7 +40,7 @@ public static partial class Program
         Textbox subtitle;
         using (gr.Row())
         {
-            subtitle = gr.Textbox(Mp4SourceDef.WangJingZe.CombinedText, lines: 8, label: "输入字幕");
+            subtitle = gr.Textbox(Mp4SourceDef.Xiang.CombinedText, lines: 8, label: "输入字幕");
             image = gr.Image(interactive: false);
         }
         gr.Button("生成视频").Click(i =>
