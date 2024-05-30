@@ -1,7 +1,8 @@
-# ffmpeg-wjz-sorry-generator
+# FFmpeg生成GIF动图
 
 ### 体验网站：
-https://ffmpeg-sorry-demo.starworks.cc:88/
+* 新版本（基于Gradio.NET）：https://sorry.starworks.cc:88/
+* 老版本：https://ffmpeg-sorry-demo.starworks.cc:88/
 
 ### 要点：
 * 视频解码
@@ -16,3 +17,8 @@ https://ffmpeg-sorry-demo.starworks.cc:88/sorry/generate?type=wjz&subtitle=%E8%B
 ### 依赖
 * Sdcb.FFmpeg （使用纯C API平台调用生成，不是命令行）： https://github.com/sdcb/sdcb.ffmpeg
 * [Vortice.Windows] (https://github.com/amerkoleci/Vortice.Windows)
+* [Gradio.NET](https://github.com/feiyun0112/Gradio.Net/)
+
+### 特别感谢
+
+[Gradio.NET](https://github.com/feiyun0112/Gradio.Net/)特别好用，有了Gradio.NET，代码量大大减少，开发效率大大提高！
