@@ -1,4 +1,4 @@
-using Gradio.Net;
+ï»¿using Gradio.Net;
 using System.Text.RegularExpressions;
 
 namespace Sorry;
@@ -22,27 +22,27 @@ public static partial class Program
         using Blocks blocks = gr.Blocks();
 
 
-        gr.Markdown("# ÊÓÆµÄ£°å¡¢×ÖÄ»£¬Éú³ÉÊÓÆµgif");
+        gr.Markdown("# è§†é¢‘æ¨¡æ¿ã€å­—å¹•ï¼Œç”Ÿæˆè§†é¢‘gif");
         Textbox template;
         Button loadSubtitleButton;
         using (gr.Row())
         {
-            template = gr.Textbox("ÕæÏã", interactive: true, label: $"ÔÊÐíµÄÄ£°åÖµ£º{string.Join("|", Mp4SourceDef.All.Select(x => x.Title))}");
-            loadSubtitleButton = gr.Button("¼ÓÔØ×ÖÄ»");
+            template = gr.Textbox("çœŸé¦™", interactive: true, label: $"å…è®¸çš„æ¨¡æ¿å€¼ï¼š{string.Join("|", Mp4SourceDef.All.Select(x => x.Title))}");
+            loadSubtitleButton = gr.Button("åŠ è½½å­—å¹•");
         }
 
         Image image;
         Textbox subtitle;
         using (gr.Row())
         {
-            subtitle = gr.Textbox(Mp4SourceDef.Xiang.CombinedText, lines: 8, label: "ÊäÈë×ÖÄ»");
+            subtitle = gr.Textbox(Mp4SourceDef.Xiang.CombinedText, lines: 8, label: "è¾“å…¥å­—å¹•");
             image = gr.Image(interactive: false);
         }
-        gr.Button("Éú³ÉÊÓÆµ").Click(async i =>
+        gr.Button("ç”Ÿæˆè§†é¢‘").Click(async i =>
         {
             string template = i.Data[0].ToString()!;
             Mp4SourceDef? def = Mp4SourceDef.All.FirstOrDefault(x => x.Title == template);
-            if (def == null) throw new Exception($"Ä£°å{template}´íÎó£¬ÇëÊäÈë {string.Join("|", Mp4SourceDef.All.Select(x => x.Title))} Ö®Ò»");
+            if (def == null) throw new Exception($"æ¨¡æ¿{template}é”™è¯¯ï¼Œè¯·è¾“å…¥ {string.Join("|", Mp4SourceDef.All.Select(x => x.Title))} ä¹‹ä¸€");
             string subtitle = i.Data[1].ToString()!;
 
             byte[] gif = def.CreateLines(LineSpliter().Split(subtitle)).DecodeAddSubtitle();
@@ -55,7 +55,7 @@ public static partial class Program
         {
             string template = i.Data[0].ToString()!;
             Mp4SourceDef? def = Mp4SourceDef.All.FirstOrDefault(x => x.Title == template);
-            if (def == null) throw new Exception($"Ä£°å{template}´íÎó£¬ÇëÊäÈë {string.Join("|", Mp4SourceDef.All.Select(x => x.Title))} Ö®Ò»");
+            if (def == null) throw new Exception($"æ¨¡æ¿{template}é”™è¯¯ï¼Œè¯·è¾“å…¥ {string.Join("|", Mp4SourceDef.All.Select(x => x.Title))} ä¹‹ä¸€");
             return gr.Output(def.CombinedText);
         }, [template], [subtitle]);
 
