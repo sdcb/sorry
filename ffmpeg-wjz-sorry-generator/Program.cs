@@ -26,13 +26,7 @@ public static partial class Program
 
 
         gr.Markdown("# 视频模板、字幕，生成视频gif");
-        Radio template;
-        Button loadSubtitleButton;
-        using (gr.Row())
-        {
-            template = gr.Radio(Mp4SourceDef.All.Select(x => x.Title).ToArray(), label: "选择模板", value: Mp4SourceDef.All.First().Title);
-            loadSubtitleButton = gr.Button("加载字幕");
-        }
+        Radio template = gr.Radio(Mp4SourceDef.All.Select(x => x.Title).ToArray(), label: "选择模板", value: Mp4SourceDef.All.First().Title);
 
         Image image;
         Textbox subtitle;
@@ -93,7 +87,7 @@ public static partial class Program
             return gr.Output(path);
         }, inputs: [template, subtitle], outputs: [image]);
 
-        loadSubtitleButton.Click(i =>
+        template.Select(i =>
         {
             string template = Radio.Payload(i.Data[0]).Single();
             Mp4SourceDef? def = Mp4SourceDef.All.FirstOrDefault(x => x.Title == template);
